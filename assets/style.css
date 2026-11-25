@@ -1,4 +1,4 @@
-/* Wizualizacja - Winny Zakątek (próbka). Śliwka + miód + less, Playfair Display + Karla. */
+/* Wizualizacja - Winny Zakątek (próbka). Śliwka + miód + less, Playfair Display + Figtree. */
 :root{
   --ink:#241a20; --ink-2:#3a2e33; --muted:#5a4f52; --line:#e5dccb;
   --plum:#3a1f35; --plum-d:#27131f; --plum-l:#efe2ea;
@@ -7,7 +7,7 @@
   --paper:#fbf7ee; --loess:#f1e7d1; --white:#fff;
   --free:#4b6323; --free-l:#e9f0da; --busy:#9b3240; --busy-l:#f6e1e2;
   --head:"Playfair Display",Georgia,"Times New Roman",serif;
-  --body:"Karla",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --r:10px; --r-s:8px; --shadow:0 18px 44px rgba(39,19,31,.16); --shadow-s:0 6px 18px rgba(39,19,31,.09);
 }
 *{box-sizing:border-box;margin:0;padding:0}
