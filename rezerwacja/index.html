@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wolne terminy w Winnym Zakątku - kalendarz i rezerwacja online</title>
+<meta name="description" content="Sprawdź wolne terminy w winnicy w Rzeczycy: wybierz daty i liczbę osób, porównaj domek, miejsce na kampera i namiot, zobacz cenę za pobyt i zarezerwuj.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Karla:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=20261125b">
+</head>
+<body data-base="../" data-page="rezerwacja">
+<div class="demo-bar"><span class="db-long"><b>Próbka strony</b> przygotowana przez Dominik Mendrala Company dla Winnego Zakątka - to nie jest oficjalna strona obiektu. Ceny, liczba miejsc, wolne terminy i zdjęcia są przykładowe, formularz niczego nie wysyła.</span><span class="db-short"><b>Próbka strony</b> - ceny, terminy i zdjęcia przykładowe</span></div>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="../" aria-label="Winny Zakątek - strona główna">
+      <span class="logo-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c0-2 1.5-3.5 4-3.5"/><circle cx="9" cy="9" r="2.2"/><circle cx="14" cy="9" r="2.2"/><circle cx="11.5" cy="13" r="2.2"/><circle cx="6.8" cy="12.8" r="2.2"/><circle cx="16.3" cy="12.8" r="2.2"/><circle cx="9" cy="16.8" r="2.2"/><circle cx="14" cy="16.8" r="2.2"/><circle cx="11.5" cy="20.4" r="2"/></svg></span>
+      <span class="logo-txt">Winny Zakątek<small>Winnica Wieczorków · Kazimierz Dolny</small></span>
+    </a>
+    <ul class="menu"><li><a href="../noclegi/">Noclegi</a></li><li><a href="../rezerwacja/" class="on" aria-current="page">Wolne terminy</a></li><li><a href="../degustacje/">Degustacje</a></li><li><a href="../galeria/">Galeria</a></li><li><a href="../okolica/">Okolica</a></li><li><a href="../zasady-pobytu/">Zasady pobytu</a></li><li><a href="../kontakt/">Kontakt</a></li></ul>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" onclick="const h=this.closest('header');h.classList.toggle('open');this.setAttribute('aria-expanded',h.classList.contains('open'))"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main>
+<section class="page-hero" style="--bg:url('../img/ognisko-wieczorem.jpg')">
+  <div class="wrap">
+    <div class="crumbs"><a href="../">Strona główna</a> › Wolne terminy</div>
+    <h1>Wolne terminy i rezerwacja noclegu</h1>
+    <p>Wybierz daty i liczbę osób. Zobaczysz, co jest wolne i ile kosztuje cały pobyt, a rezerwację wyślesz prosto do gospodarza - bez prowizji portalu.</p>
+  </div>
+  <span class="sr-only">Ognisko wieczorem</span>
+</section>
+<section id="szukaj" style="padding-top:40px"><div class="wrap">
+  <div class="steps"><span><b>1</b>Termin i goście</span><span><b>2</b>Rodzaj noclegu</span><span><b>3</b>Rezerwacja</span></div>
+  <form class="search inline" id="searchForm" action="" method="get">
+      <label>Przyjazd<input type="date" id="sIn" name="in" min="2027-05-01" max="2027-09-30" value="2027-07-09" required></label>
+      <label>Wyjazd<input type="date" id="sOut" name="out" min="2027-05-02" max="2027-10-01" value="2027-07-11" required></label>
+      <label>Goście
+        <select id="sGuests" name="g"><option value="1">1 osoba</option><option value="2" selected>2 osoby</option><option value="3">3 osoby</option><option value="4">4 osoby</option></select>
+      </label>
+      <button class="btn btn-honey" type="submit">Sprawdź wolne miejsca</button>
+    </form>
+  <h2 class="results-head" id="resultsHead"></h2>
+  <div class="results" id="results"></div>
+</div></section>
+<section id="kalendarz" class="band-loess"><div class="wrap">
+  <h2>Kalendarz wolnych dni</h2>
+  <p class="lead">Wybierz rodzaj noclegu, kliknij dzień przyjazdu, a potem dzień wyjazdu. Pod każdą datą widać cenę tej nocy, obok - cenę za cały pobyt.</p>
+  <div class="cal-box">
+    <div>
+      <div class="tabs" id="tabs"></div>
+      <div class="cal-head"><button type="button" id="prev" aria-label="Poprzedni miesiąc">‹</button><strong>Sezon: maj - wrzesień 2027</strong><button type="button" id="next" aria-label="Następny miesiąc">›</button></div>
+      <div class="months" id="months"></div>
+      <div class="legend"><span><i style="background:var(--paper);border:1px solid var(--line)"></i>wolny</span><span><i style="background:#e4dccb"></i>zajęty</span><span><i style="background:var(--plum)"></i>Twój pobyt</span><span><b style="color:var(--wine)">cena</b> pod datą = noc droższa (weekend)</span></div>
+      <p class="sync">↻ Kalendarz może sam synchronizować się z portalami (Booking.com, AlohaCamp i inne przez kalendarz iCal): rezerwacja z portalu od razu blokuje termin tutaj, a rezerwacja ze strony blokuje go w portalu.</p>
+    </div>
+    <aside class="summary">
+      <h3>Twój pobyt</h3>
+      <div class="direct">Rezerwacja bezpośrednia - bez prowizji portalu</div>
+      <div class="sum-row"><span>Nocleg</span><span id="sumCabin">-</span></div>
+      <div class="sum-row"><span>Przyjazd</span><span id="sumIn">-</span></div>
+      <div class="sum-row"><span>Wyjazd</span><span id="sumOut">-</span></div>
+      <div class="sum-row"><span>Liczba nocy</span><span id="sumNights">-</span></div>
+      <div class="sum-total"><span>Razem</span><b id="sumTotal">-</b></div>
+      <button class="btn btn-honey" id="bookBtn" disabled>Rezerwuj ten termin</button>
+      <p class="hint">Zameldowanie od 12:00, wymeldowanie do 16:00. Gospodarz potwierdza rezerwację mailem.</p>
+    </aside>
+  </div>
+</div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h4>Winny Zakątek - Winnica Wieczorków</h4>
+        <p>Rzeczyca 112, 24-120 Kazimierz Dolny<br>tel. <a href="tel:+48798837577">798 837 577</a><br>Nocleg w winnicy: domek, miejsca na kampera i namiot, degustacje wina.</p>
+      </div>
+      <div>
+        <h4>Na stronie</h4>
+        <p><a href="../noclegi/">Noclegi</a><br><a href="../rezerwacja/">Wolne terminy</a><br><a href="../degustacje/">Degustacje</a><br><a href="../galeria/">Galeria</a><br><a href="../okolica/">Okolica</a></p>
+      </div>
+      <div>
+        <h4>Informacje</h4>
+        <p><a href="../zasady-pobytu/">Zasady pobytu</a><br><a href="../kontakt/">Kontakt i dojazd</a><br><a href="#">Regulamin</a><br><a href="#">Polityka prywatności</a></p>
+      </div>
+    </div>
+    <div class="copy"><span>© 2027 Winny Zakątek · zdjęcia przykładowe: Wikimedia Commons, autorzy i licencje w <a href="../galeria/#zrodla">galerii</a></span><span>Strona: <a href="https://dmcompany.com.pl">Dominik Mendrala Company</a></span></div>
+  </div>
+</footer>
+<a class="btn btn-honey mobile-cta" href="../rezerwacja/">Sprawdź wolne terminy</a>
+<div class="modal" id="modal" role="dialog" aria-label="Rezerwacja">
+  <div class="modal-box">
+    <button class="x" id="mClose" aria-label="Zamknij">×</button>
+    <div id="mForm">
+      <h3>Rezerwacja noclegu</h3>
+      <div class="mini" id="mSummary"></div>
+      <form id="bookForm">
+        <label class="f">Imię i nazwisko<input required autocomplete="name" placeholder="Jan Kowalski"></label>
+        <label class="f">E-mail<input type="email" required autocomplete="email" placeholder="jan.kowalski@example.com"></label>
+        <label class="f">Telefon<input type="tel" required autocomplete="tel" placeholder="500 000 000"></label>
+        <div class="addon">
+          <label class="chk-big"><input type="checkbox" id="addTaste"> <span><b>Dodaj degustację wina</b><br><small>przykładowo 45 zł za osobę, w dniu przyjazdu albo następnego</small></span></label>
+          <label class="f" id="tastePeople" hidden>Ile osób na degustacji?<select id="tasteN"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+        </div>
+        <label class="f">Uwagi (np. pies, długość kampera, godzina przyjazdu)<textarea rows="3"></textarea></label>
+        <label class="chk"><input type="checkbox" required> Zapoznałem się z regulaminem i polityką prywatności. Dane z formularza służą tylko do obsługi rezerwacji.</label>
+        <div class="sum-total modal-total"><span>Razem</span><b id="mTotal">-</b></div>
+        <button class="btn btn-honey" style="width:100%" type="submit">Wyślij rezerwację</button>
+      </form>
+    </div>
+    <div class="ok-msg" id="mOk">
+      <div class="ico">✓</div>
+      <h3>Dziękujemy!</h3>
+      <p class="muted" style="margin-top:8px">Na prawdziwej stronie gość dostaje tu potwierdzenie, a gospodarz od razu maila z rezerwacją. W próbce nic nie zostało wysłane.</p>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/app.js?v=20261125b"></script>
+</body>
+</html>
